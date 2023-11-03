@@ -9,7 +9,9 @@
 #ifndef YONK_IO_IBUF_H
 #define YONK_IO_IBUF_H  1
 
+#include <limits.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct ibuf;
 
@@ -34,6 +36,20 @@ static inline int ibuf_init (struct ibuf *o, size_t size, ibuf_cb cb)
 static inline void ibuf_fini (struct ibuf *o)
 {
 	free (o->head);
+}
+
+#ifndef MIN
+#define MIN(x, y)  (((x) < (y)) ? (x) : (y))
+#endif
+
+static inline int ibuf_push (struct ibuf *o, const void *data, size_t count)
+{
+	count = MIN (MIN (count, INT_MAX), o->tail - o->cursor);
+
+	memcpy (o->cursor, data, count);
+
+	o->cursor += count;
+	return o->cb (o, count);
 }
 
 #endif  /* YONK_IO_IBUF_H */
