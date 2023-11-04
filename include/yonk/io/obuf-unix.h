@@ -9,7 +9,9 @@
 #ifndef YONK_IO_OBUF_UNIX_H
 #define YONK_IO_OBUF_UNIX_H  1
 
+#include <poll.h>
 #include <unistd.h>
+
 #include <yonk/io/obuf.h>
 
 static inline int obuf_pull_file (struct obuf *o, int fd)
@@ -20,6 +22,14 @@ static inline int obuf_pull_file (struct obuf *o, int fd)
 		o->cursor += count;
 
 	return o->cb (o, count);
+}
+
+static inline int obuf_do_poll (struct obuf *o, struct pollfd *p)
+{
+	if ((p->revents | POLLOUT) == 0 || obuf_pull_file (o, p->fd))
+		return p->events;
+
+	return p->events &= ~POLLOUT;
 }
 
 #endif  /* YONK_IO_OBUF_UNIX_H */
