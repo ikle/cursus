@@ -21,4 +21,9 @@ static inline int ibuf_page_init (struct ibuf *o, size_t size)
 	return ibuf_init (o, size, ibuf_page_cb);
 }
 
+static inline void ibuf_page_fini (struct ibuf *o)
+{
+	ibuf_fini (o);
+}
+
 #endif  /* YONK_IO_IBUF_PAGE_H */

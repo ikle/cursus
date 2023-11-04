@@ -41,4 +41,9 @@ static inline int ibuf_blob_init (struct ibuf *o, size_t size)
 	return ibuf_init (o, size, ibuf_blob_cb);
 }
 
+static inline void ibuf_blob_fini (struct ibuf *o)
+{
+	ibuf_fini (o);
+}
+
 #endif  /* YONK_IO_IBUF_BLOB_H */
