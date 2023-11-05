@@ -1,7 +1,7 @@
-DESCRIPTION = Yonk I/O Library
-URL = https://github.com/ikle/yonk-io
+DESCRIPTION = Process Management and I/O Library
+URL = https://github.com/ikle/cursus
 
-LIBNAME	= yonk-io
+LIBNAME	= cursus
 LIBVER	= 0
 LIBREV	= 0.9
 

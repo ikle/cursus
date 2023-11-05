@@ -1,18 +1,18 @@
 /*
- * Yonk I/O Input Buffer, POSIX I/O
+ * Cursus I/O Input Buffer, POSIX I/O
  *
  * Copyright (c) 2023 Alexei A. Smekalkine <ikle@ikle.ru>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#ifndef YONK_IO_IBUF_UNIX_H
-#define YONK_IO_IBUF_UNIX_H  1
+#ifndef CURSUS_IBUF_UNIX_H
+#define CURSUS_IBUF_UNIX_H  1
 
 #include <poll.h>
 #include <unistd.h>
 
-#include <yonk/io/ibuf.h>
+#include <cursus/ibuf.h>
 
 static inline int ibuf_push_file (struct ibuf *o, int fd)
 {
@@ -32,4 +32,4 @@ static inline int ibuf_do_poll (struct ibuf *o, struct pollfd *p)
 	return p->events &= ~POLLIN;
 }
 
-#endif  /* YONK_IO_IBUF_UNIX_H */
+#endif  /* CURSUS_IBUF_UNIX_H */

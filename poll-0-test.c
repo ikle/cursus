@@ -1,5 +1,5 @@
 /*
- * Yonk I/O Poll Test
+ * Cursus I/O Poll Test
  *
  * Copyright (c) 2023 Alexei A. Smekalkine <ikle@ikle.ru>
  *
@@ -9,10 +9,10 @@
 #include <errno.h>
 #include <stdio.h>
 
-#include <yonk/io/ibuf-blob.h>
-#include <yonk/io/ibuf-unix.h>
-#include <yonk/io/obuf-blob.h>
-#include <yonk/io/obuf-unix.h>
+#include <cursus/ibuf-blob.h>
+#include <cursus/ibuf-unix.h>
+#include <cursus/obuf-blob.h>
+#include <cursus/obuf-unix.h>
 
 static int do_poll (struct obuf *b0, struct ibuf *b1, int timeout)
 {

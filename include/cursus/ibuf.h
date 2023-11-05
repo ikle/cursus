@@ -1,39 +1,39 @@
 /*
- * Yonk I/O Output Buffer
+ * Cursus I/O Input Buffer
  *
  * Copyright (c) 2023 Alexei A. Smekalkine <ikle@ikle.ru>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#ifndef YONK_IO_OBUF_H
-#define YONK_IO_OBUF_H  1
+#ifndef CURSUS_IBUF_H
+#define CURSUS_IBUF_H  1
 
 #include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
-struct obuf;
+struct ibuf;
 
-typedef int obuf_cb (struct obuf *o, int count);
+typedef int ibuf_cb (struct ibuf *o, int count);
 
-struct obuf {
+struct ibuf {
 	char *head, *cursor, *tail;
-	obuf_cb *cb;
+	ibuf_cb *cb;
 };
 
-static inline int obuf_init (struct obuf *o, size_t size, obuf_cb cb)
+static inline int ibuf_init (struct ibuf *o, size_t size, ibuf_cb cb)
 {
 	if ((o->head = malloc (size)) == NULL)
 		return 0;
 
+	o->cursor = o->head;
 	o->tail   = o->head + size;
-	o->cursor = o->tail;
 	o->cb     = cb;
 	return 1;
 }
 
-static inline void obuf_fini (struct ibuf *o)
+static inline void ibuf_fini (struct ibuf *o)
 {
 	free (o->head);
 }
@@ -42,14 +42,14 @@ static inline void obuf_fini (struct ibuf *o)
 #define MIN(x, y)  (((x) < (y)) ? (x) : (y))
 #endif
 
-static inline int obuf_pull (struct obuf *o, void *data, size_t count)
+static inline int ibuf_push (struct ibuf *o, const void *data, size_t count)
 {
 	count = MIN (MIN (count, INT_MAX), o->tail - o->cursor);
 
-	memcpy (data, o->cursor, count);
+	memcpy (o->cursor, data, count);
 
 	o->cursor += count;
 	return o->cb (o, count);
 }
 
-#endif  /* YONK_IO_OBUF_H */
+#endif  /* CURSUS_IBUF_H */

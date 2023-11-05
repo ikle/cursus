@@ -1,15 +1,15 @@
 /*
- * Yonk I/O Blob Output Buffer
+ * Cursus I/O Blob Output Buffer
  *
  * Copyright (c) 2023 Alexei A. Smekalkine <ikle@ikle.ru>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#ifndef YONK_IO_OBUF_BLOB_H
-#define YONK_IO_OBUF_BLOB_H  1
+#ifndef CURSUS_OBUF_BLOB_H
+#define CURSUS_OBUF_BLOB_H  1
 
-#include <yonk/io/obuf.h>
+#include <cursus/obuf.h>
 
 static inline int obuf_blob_cb (struct obuf *o, int count)
 {
@@ -30,4 +30,4 @@ static inline void obuf_blob_fini (struct obuf *o)
 	/* nothing */
 }
 
-#endif  /* YONK_IO_OBUF_BLOB_H */
+#endif  /* CURSUS_OBUF_BLOB_H */

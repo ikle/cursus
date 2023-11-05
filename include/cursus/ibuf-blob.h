@@ -1,17 +1,17 @@
 /*
- * Yonk I/O Blob Input Buffer
+ * Cursus I/O Blob Input Buffer
  *
  * Copyright (c) 2023 Alexei A. Smekalkine <ikle@ikle.ru>
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
 
-#ifndef YONK_IO_IBUF_BLOB_H
-#define YONK_IO_IBUF_BLOB_H  1
+#ifndef CURSUS_IBUF_BLOB_H
+#define CURSUS_IBUF_BLOB_H  1
 
 #include <errno.h>
 
-#include <yonk/io/ibuf.h>
+#include <cursus/ibuf.h>
 
 static inline int ibuf_blob_cb (struct ibuf *o, int count)
 {
@@ -46,4 +46,4 @@ static inline void ibuf_blob_fini (struct ibuf *o)
 	ibuf_fini (o);
 }
 
-#endif  /* YONK_IO_IBUF_BLOB_H */
+#endif  /* CURSUS_IBUF_BLOB_H */
