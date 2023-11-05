@@ -6,3 +6,9 @@ LIBVER	= 0
 LIBREV	= 0.9
 
 include make-core.mk
+
+.PHONY: test
+
+test: build-tests
+	echo 01234567890123456789 | ./poll-0-test
+	echo 0123456789012345678901234567890123456789012345 | ./poll-0-test
