@@ -127,7 +127,7 @@ ifneq ($(TESTS),)
 %-test: %-test.c
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-.PHONY: build-test clean-tests
+.PHONY: build-tests clean-tests
 
 all:     build-tests
 clean:   clean-tests
