@@ -3,7 +3,7 @@ URL = https://github.com/ikle/cursus
 
 LIBNAME	= cursus
 LIBVER	= 0
-LIBREV	= 0.9
+LIBREV	= 0.10
 
 include make-core.mk
 
