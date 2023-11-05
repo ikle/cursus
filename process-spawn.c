@@ -20,5 +20,5 @@ pid_t process_spawn (char *const argv[], process_cb cb, void *cookie)
 	if (cb == NULL || cb (cookie))
 		(void) execvp (argv[0], argv);
 
-	_exit (256);
+	_exit (127);
 }
