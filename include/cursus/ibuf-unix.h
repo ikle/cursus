@@ -29,7 +29,7 @@ static inline int ibuf_do_poll (struct ibuf *o, struct pollfd *p)
 	if ((p->revents & (POLLIN|POLLHUP)) == 0 || ibuf_push_file (o, p->fd))
 		return p->events;
 
-	return p->events &= ~POLLIN;
+	return p->fd = -1, p->events &= ~POLLIN;
 }
 
 #endif  /* CURSUS_IBUF_UNIX_H */
