@@ -26,7 +26,7 @@ static inline int obuf_pull_file (struct obuf *o, int fd)
 
 static inline int obuf_do_poll (struct obuf *o, struct pollfd *p)
 {
-	if ((p->revents | POLLOUT) == 0 || obuf_pull_file (o, p->fd))
+	if ((p->revents & (POLLOUT|POLLERR)) == 0 || obuf_pull_file (o, p->fd))
 		return p->events;
 
 	return p->events &= ~POLLOUT;
