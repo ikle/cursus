@@ -26,7 +26,7 @@ static inline int ibuf_push_file (struct ibuf *o, int fd)
 
 static inline int ibuf_do_poll (struct ibuf *o, struct pollfd *p)
 {
-	if ((p->revents | POLLIN) == 0 || ibuf_push_file (o, p->fd))
+	if ((p->revents & (POLLIN|POLLHUP)) == 0 || ibuf_push_file (o, p->fd))
 		return p->events;
 
 	return p->events &= ~POLLIN;
