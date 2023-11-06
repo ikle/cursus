@@ -29,7 +29,7 @@ static inline int obuf_do_poll (struct obuf *o, struct pollfd *p)
 	if ((p->revents & (POLLOUT|POLLERR)) == 0 || obuf_pull_file (o, p->fd))
 		return p->events;
 
-	return p->events &= ~POLLOUT;
+	return p->fd = -1, p->events &= ~POLLOUT;
 }
 
 #endif  /* CURSUS_OBUF_UNIX_H */
